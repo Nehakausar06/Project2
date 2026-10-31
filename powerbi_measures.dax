@@ -1,0 +1,28 @@
+Total Revenue =
+SUM ( ecommerce_orders[sales] )
+
+Total Profit =
+SUM ( ecommerce_orders[profit] )
+
+Total Orders =
+DISTINCTCOUNT ( ecommerce_orders[order_id] )
+
+Units Sold =
+SUM ( ecommerce_orders[quantity] )
+
+Total Customers =
+DISTINCTCOUNT ( ecommerce_orders[customer_id] )
+
+Average Order Value =
+DIVIDE ( [Total Revenue], [Total Orders], 0 )
+
+Profit Margin % =
+DIVIDE ( [Total Profit], [Total Revenue], 0 ) * 100
+
+Discount Amount =
+SUMX (
+    ecommerce_orders,
+    ecommerce_orders[unit_price]
+        * ecommerce_orders[quantity]
+        * ecommerce_orders[discount_pct]
+)
